@@ -14,6 +14,7 @@ type CallbackError = any;
 
 type PageCallback<TFields extends FieldSet> = (
     records: Records<TFields>,
+    offset: string,
     processNextPage: () => void
 ) => void;
 type RecordCollectionCallback<TFields extends FieldSet> = (
@@ -172,7 +173,7 @@ function eachPage<TFields extends FieldSet>(
                     return new Record(this._table, null, recordJson);
                 });
 
-                pageCallback(records, next);
+                pageCallback(records, params.offset, next);
             }
         });
     };
@@ -193,7 +194,7 @@ function all<TFields extends FieldSet>(
 
     const allRecords = [];
     this.eachPage(
-        (pageRecords, fetchNextPage) => {
+        (pageRecords, offset, fetchNextPage) => {
             allRecords.push(...pageRecords);
             fetchNextPage();
         },

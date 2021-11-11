@@ -443,7 +443,7 @@ module.exports = objectToQueryParamString;
 
 },{"lodash/isArray":79,"lodash/isNil":84,"lodash/keys":92}],12:[function(require,module,exports){
 "use strict";
-module.exports = "0.11.1";
+module.exports = "0.11.3";
 
 },{}],13:[function(require,module,exports){
 "use strict";
@@ -575,7 +575,7 @@ function eachPage(pageCallback, done) {
                 var records = result.records.map(function (recordJson) {
                     return new record_1.default(_this._table, null, recordJson);
                 });
-                pageCallback(records, next);
+                pageCallback(records, params.offset, next);
             }
         });
     };
@@ -589,7 +589,7 @@ function all(done) {
         throw new Error('The first parameter to `all` must be a function');
     }
     var allRecords = [];
-    this.eachPage(function (pageRecords, fetchNextPage) {
+    this.eachPage(function (pageRecords, offset, fetchNextPage) {
         allRecords.push.apply(allRecords, pageRecords);
         fetchNextPage();
     }, function (err) {

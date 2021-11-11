@@ -1,9 +1,9 @@
 {
-  "name": "airtable",
-  "version": "0.11.1",
+  "name": "airtable-offset",
+  "version": "0.11.3",
   "license": "MIT",
-  "homepage": "https://github.com/airtable/airtable.js",
-  "repository": "git://github.com/airtable/airtable.js.git",
+  "homepage": "https://github.com/lexagr/airtable.js",
+  "repository": "git://github.com/lexagr/airtable.js.git",
   "private": false,
   "scripts": {
     "pretest": "npm run prepare",
