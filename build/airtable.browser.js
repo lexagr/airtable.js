@@ -443,7 +443,7 @@ module.exports = objectToQueryParamString;
 
 },{"lodash/isArray":79,"lodash/isNil":84,"lodash/keys":92}],12:[function(require,module,exports){
 "use strict";
-module.exports = "0.11.1";
+module.exports = "0.11.3";
 
 },{}],13:[function(require,module,exports){
 "use strict";
@@ -575,7 +575,7 @@ function eachPage(pageCallback, done) {
                 var records = result.records.map(function (recordJson) {
                     return new record_1.default(_this._table, null, recordJson);
                 });
-                pageCallback(records, next);
+                pageCallback(records, params.offset, next);
             }
         });
     };
@@ -589,7 +589,7 @@ function all(done) {
         throw new Error('The first parameter to `all` must be a function');
     }
     var allRecords = [];
-    this.eachPage(function (pageRecords, fetchNextPage) {
+    this.eachPage(function (pageRecords, offset, fetchNextPage) {
         allRecords.push.apply(allRecords, pageRecords);
         fetchNextPage();
     }, function (err) {
@@ -619,7 +619,7 @@ exports.paramValidators = {
     filterByFormula: typecheck_1.default(isString_1.default, 'the value for `filterByFormula` should be a string'),
     maxRecords: typecheck_1.default(isNumber_1.default, 'the value for `maxRecords` should be a number'),
     pageSize: typecheck_1.default(isNumber_1.default, 'the value for `pageSize` should be a number'),
-    offset: typecheck_1.default(isNumber_1.default, 'the value for `offset` should be a number'),
+    offset: typecheck_1.default(isString_1.default, 'the value for `offset` should be a string'),
     sort: typecheck_1.default(typecheck_1.default.isArrayOf(function (obj) {
         return (isPlainObject_1.default(obj) &&
             isString_1.default(obj.field) &&

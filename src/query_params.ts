@@ -15,7 +15,7 @@ export const paramValidators = {
 
     pageSize: check(isNumber, 'the value for `pageSize` should be a number'),
 
-    offset: check(isNumber, 'the value for `offset` should be a number'),
+    offset: check(isString, 'the value for `offset` should be a string'),
 
     sort: check(
         check.isArrayOf((obj): obj is {field: string; direction?: 'asc' | 'desc'} => {
@@ -51,7 +51,7 @@ export interface QueryParams<TFields> {
     filterByFormula?: string;
     maxRecords?: number;
     pageSize?: number;
-    offset?: number;
+    offset?: string;
     sort?: SortParameter<TFields>[];
     view?: string;
     cellFormat?: 'json' | 'string';
